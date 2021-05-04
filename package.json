@@ -1,0 +1,22 @@
+{
+  "name": "task1_ceasar-cipher-cli-tool",
+  "version": "1.0.0",
+  "description": "rss-school, node course, task 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krumiprog/task1_ceasar-cipher-cli-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krumiprog/task1_ceasar-cipher-cli-tool/issues"
+  },
+  "homepage": "https://github.com/krumiprog/task1_ceasar-cipher-cli-tool#readme",
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
+}
