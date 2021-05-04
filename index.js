@@ -69,13 +69,47 @@ if (outputFile) {
 const transformStream = new Transform({
   transform(chunk, encoding, callback) {
     try {
-      const result = `${chunk.toString('utf8')} - TEST`;
-      callback(null, result);
+      callback(null, codeData(chunk));
     } catch (err) {
       callback(err);
     }
   },
 });
+
+function codeData(chunk) {
+  let shiftValue = shift % 26;
+
+  if (action === 'decode') {
+    shiftValue = -shiftValue;
+  }
+
+  return chunk
+    .toString('utf8')
+    .split('')
+    .map(ch => {
+      let code = ch.charCodeAt(0);
+
+      if (code >= 65 && code <= 90) {
+        code += shiftValue;
+        if (code > 90) {
+          code -= 26;
+        } else if (code < 65) {
+          code += 26;
+        }
+      } else if (code >= 97 && code <= 122) {
+        code += shiftValue;
+        if (code > 122) {
+          code -= 26;
+        } else if (code < 97) {
+          code += 26;
+        }
+      } else {
+        return ch;
+      }
+      return String.fromCharCode(code);
+    })
+    .join('');
+}
 
 pipeline(readStream, transformStream, writeStream, err => {
   if (err) {
