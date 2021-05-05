@@ -35,6 +35,6 @@ pipeline(readStream, transformStream, writeStream, err => {
     process.stderr.write(err);
     process.exit(1);
   } else {
-    process.stdout.write(`ERROR: Action ${action} succeeded.`);
+    process.stdout.write(`Action ${action} succeeded.`);
   }
 });
