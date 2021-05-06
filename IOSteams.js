@@ -19,7 +19,7 @@ exports.createWriteStream = argv => {
 
   if (outputFile) {
     if (fs.existsSync(outputFile)) {
-      return fs.createWriteStream(outputFile);
+      return fs.createWriteStream(outputFile, { flags: 'a' });
     } else {
       throw new Error(`Output file ${outputFile} does not exist.`);
     }

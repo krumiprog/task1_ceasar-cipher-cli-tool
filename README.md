@@ -7,6 +7,12 @@
 3. -i, --input: (файл для чтения)
 4. -o, --output: (файл для записи)
 
+**Установка зависимостей**
+
+```bash
+$ npm install
+```
+
 **Пояснения**
 
 1. Если не передан аргумент с путем до файла на чтение, то чтение осуществляется из process.stdin (консоль по-умолчанию).
@@ -19,11 +25,11 @@
 ## Пример использования
 
 ```bash
-$ node my_caesar_cli -a encode -s 7 -i "./input.txt" -o "./output.txt"
+$ node index -a encode -s 7 -i "./input.txt" -o "./output.txt"
 ```
 
 Пример передачи отрицательного значение в параметр shift (`-s=-7`)
 
 ```bash
-$ node my_caesar_cli -a encode -s=-7 -i "./input.txt" -o "./output.txt"
+$ node index -a encode -s=-7 -i "./input.txt" -o "./output.txt"
 ```
