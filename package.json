@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/krumiprog/task1_ceasar-cipher-cli-tool#readme",
   "dependencies": {
-    "minimist": "^1.2.5"
+    "commander": "^7.2.0"
   }
 }

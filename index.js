@@ -1,28 +1,21 @@
-const { getAction, getShift } = require('./checkArgs');
+const { pipeline } = require('stream');
+const { getOptions } = require('./getOptions');
 const { createReadSteam, createWriteStream } = require('./IOSteams');
 const TransformStream = require('./TransformStream');
-const { pipeline } = require('stream');
-const argv = require('minimist')(process.argv.slice(2));
 
 const ABC_LENGTH = 26;
 
-let action;
-let shift;
+const options = getOptions();
+const shift =
+  (options.action === 'decode' ? -options.shift : options.shift) % ABC_LENGTH;
+
 let readStream;
 let writeStream;
 let transformStream;
 
 try {
-  action = getAction(argv);
-  shift = getShift(argv);
-  readStream = createReadSteam(argv);
-  writeStream = createWriteStream(argv);
-
-  shift %= ABC_LENGTH;
-  if (action === 'decode') {
-    shift = -shift;
-  }
-
+  readStream = createReadSteam(options.input);
+  writeStream = createWriteStream(options.output);
   transformStream = new TransformStream(shift);
 } catch (err) {
   process.stderr.write(`ERROR: ${err.message}`);
@@ -31,10 +24,7 @@ try {
 
 pipeline(readStream, transformStream, writeStream, err => {
   if (err) {
-    process.stderr.write(`ERROR: Action ${action} failed.`);
-    process.stderr.write(err);
+    process.stderr.write(`ERROR: Action ${options.action} failed.`);
     process.exit(1);
-  } else {
-    process.stdout.write(`Action ${action} succeeded.`);
   }
 });

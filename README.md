@@ -28,8 +28,8 @@ $ npm install
 $ node index -a encode -s 7 -i "./input.txt" -o "./output.txt"
 ```
 
-Пример передачи отрицательного значение в параметр shift (`-s=-7`)
+Пример передачи отрицательного значение в параметр shift
 
 ```bash
-$ node index -a encode -s=-7 -i "./input.txt" -o "./output.txt"
+$ node index -a encode -s -7 -i "./input.txt" -o "./output.txt"
 ```
